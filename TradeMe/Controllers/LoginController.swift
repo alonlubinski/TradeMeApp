@@ -67,7 +67,10 @@ class LoginController: UIViewController {
                     self.login_LBL_error.alpha = 1
                 } else {
                     self.login_LBL_error.alpha = 0
-                    self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    //self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                 }
             }
         }

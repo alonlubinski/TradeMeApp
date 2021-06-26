@@ -1,17 +1,17 @@
 //
-//  HomeController.swift
+//  ProfileController.swift
 //  TradeMe
 //
-//  Created by user196691 on 6/25/21.
+//  Created by user196691 on 6/26/21.
 //
 
 import UIKit
 
-class HomeController: UIViewController {
+class ProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
     

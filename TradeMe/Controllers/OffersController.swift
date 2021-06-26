@@ -1,17 +1,17 @@
 //
-//  HomeController.swift
+//  OffersController.swift
 //  TradeMe
 //
-//  Created by user196691 on 6/25/21.
+//  Created by user196691 on 6/26/21.
 //
 
 import UIKit
 
-class HomeController: UIViewController {
+class OffersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
     

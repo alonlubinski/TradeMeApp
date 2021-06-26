@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FI8-fl-Y2R">
-                                <rect key="frame" x="40" y="98" width="334" height="580"/>
+                                <rect key="frame" x="40" y="54" width="334" height="580"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TradeMeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qAL-tH-kYY">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="200"/>
@@ -88,7 +88,6 @@
                         <outlet property="login_EDT_password" destination="USM-nI-UkN" id="KaT-GA-rFk"/>
                         <outlet property="login_LBL_error" destination="VRJ-vR-hLo" id="M8B-ox-uCn"/>
                         <outlet property="login_LBL_welcome" destination="RyG-F0-zeC" id="n4v-Nx-OU3"/>
-                        <segue destination="aJS-Mc-aHk" kind="show" identifier="loginToHome" id="yGE-4O-Bhf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="S0b-5P-muS">
-                                <rect key="frame" x="40" y="98" width="334" height="330"/>
+                                <rect key="frame" x="40" y="54" width="334" height="330"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NY1-mo-E05">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -165,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="1628" y="-496"/>
         </scene>
-        <!--Home Controller-->
+        <!--Home-->
         <scene sceneID="MX9-jM-JDL">
             <objects>
                 <viewController id="aJS-Mc-aHk" customClass="HomeController" customModule="TradeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -175,19 +174,87 @@
                         <viewLayoutGuide key="safeArea" id="UJc-04-Qcc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house" id="RhI-Tq-rTc"/>
                     <navigationItem key="navigationItem" id="lot-0s-6mV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jRk-FB-1GG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="321"/>
+            <point key="canvasLocation" x="906" y="235"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="TPF-Hy-plx">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" id="6Hk-QG-a6W" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="anW-4O-r2u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="aJS-Mc-aHk" kind="relationship" relationship="viewControllers" id="JYT-b1-JYo"/>
+                        <segue destination="UsH-GE-2QM" kind="relationship" relationship="viewControllers" id="boV-IX-ydz"/>
+                        <segue destination="J9J-P0-AJH" kind="relationship" relationship="viewControllers" id="b4B-YG-3Dv"/>
+                        <segue destination="9ud-n8-w5A" kind="relationship" relationship="viewControllers" id="e5g-Kc-con"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xHe-aw-NDb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-610" y="606"/>
+        </scene>
+        <!--My Products-->
+        <scene sceneID="WjG-Ud-uZb">
+            <objects>
+                <viewController id="UsH-GE-2QM" customClass="MyProductsController" customModule="TradeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H1i-Om-NlJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Cz7-cD-NYV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Products" image="repeat" catalog="system" selectedImage="repeat" id="Wsv-ir-srw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4u-xd-mcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="905"/>
+        </scene>
+        <!--Offers-->
+        <scene sceneID="Ezf-XD-t80">
+            <objects>
+                <viewController id="J9J-P0-AJH" customClass="OffersController" customModule="TradeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eHk-kN-K5a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ANg-AI-enV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Offers" image="envelope" catalog="system" selectedImage="envelope" id="9ij-ST-Qbo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ut-Ag-u73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1939" y="972"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="fZC-PD-ZPw">
+            <objects>
+                <viewController id="9ud-n8-w5A" customClass="ProfileController" customModule="TradeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ffX-WB-ukQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Zw0-tq-SkW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" selectedImage="person.circle" id="rYH-nx-oRk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6H-fY-YNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1939" y="234"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hf7-2M-hDf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XrA-Uh-JpA" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="XrA-Uh-JpA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sL3-1t-8EK">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -200,11 +267,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImU-Es-ZnI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="87.723214285714278"/>
+            <point key="canvasLocation" x="25" y="-496"/>
         </scene>
     </scenes>
     <resources>
         <image name="TradeMeLogo" width="643" height="388"/>
+        <image name="envelope" catalog="system" width="128" height="93"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="repeat" catalog="system" width="128" height="99"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
