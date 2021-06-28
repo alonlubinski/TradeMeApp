@@ -11,8 +11,11 @@ import Firebase
 class SignUpController: UIViewController {
 
     
-    @IBOutlet weak var register_EDT_email: UITextField!
+    @IBOutlet weak var register_EDT_first: UITextField!
     
+    @IBOutlet weak var register_EDT_last: UITextField!
+    
+    @IBOutlet weak var register_EDT_email: UITextField!
     
     @IBOutlet weak var register_EDT_password: UITextField!
     
@@ -31,6 +34,8 @@ class SignUpController: UIViewController {
     }
     
     func setUpViews() {
+        Styles.textField(register_EDT_first)
+        Styles.textField(register_EDT_last)
         Styles.textField(register_EDT_email)
         Styles.textField(register_EDT_password)
         Styles.textField(register_EDT_password2)
@@ -38,7 +43,9 @@ class SignUpController: UIViewController {
     }
     
     func validateForm() -> String? {
-        if(!Validation.fieldIsNotEmpty(register_EDT_email) || !Validation.fieldIsNotEmpty(register_EDT_password) || !Validation.fieldIsNotEmpty(register_EDT_password2) ){
+        if(!Validation.fieldIsNotEmpty(register_EDT_email) || !Validation.fieldIsNotEmpty(register_EDT_password) || !Validation.fieldIsNotEmpty(register_EDT_password2) ||
+            !Validation.fieldIsNotEmpty(register_EDT_first) ||
+            !Validation.fieldIsNotEmpty(register_EDT_last)){
             return "Please fill all the fields"
         }
         let email = register_EDT_email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -59,6 +66,8 @@ class SignUpController: UIViewController {
             register_LBL_error.text = error!
             register_LBL_error.alpha = 1
         } else {
+            let firstName = register_EDT_first.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let lastName = register_EDT_last.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = register_EDT_email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = register_EDT_password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             Auth.auth().createUser(withEmail: email, password: password) {
@@ -68,7 +77,10 @@ class SignUpController: UIViewController {
                     self.register_LBL_error.alpha = 1
                 } else {
                     let db = Firestore.firestore()
-                    db.collection("users").document(email).setData(["email" : email])
+                    db.collection("users").document(email).setData(
+                        ["firstName": firstName,
+                        "lastName": lastName,
+                        "email" : email])
                     self.backToLoginScreen()
                 }
             }
