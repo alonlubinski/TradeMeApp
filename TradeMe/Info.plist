@@ -66,5 +66,7 @@
 	<array>
 		<string>BerlinSansFBDemiBold.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow access</string>
 </dict>
 </plist>
