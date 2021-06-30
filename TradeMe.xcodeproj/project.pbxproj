@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203694B0268C7DA900246867 /* MyProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694AE268C7DA900246867 /* MyProductTableViewCell.swift */; };
+		203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203694AF268C7DA900246867 /* MyProductTableViewCell.xib */; };
+		203694B4268C89E900246867 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B3268C89E900246867 /* FirebaseManager.swift */; };
+		203694B7268C8A1600246867 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B6268C8A1600246867 /* Product.swift */; };
 		207BD65A2684AA5800D3681D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD6592684AA5800D3681D /* Constants.swift */; };
 		2081F59626876CC800F63308 /* MyProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081F59526876CC800F63308 /* MyProductsController.swift */; };
 		2081F59826876CDC00F63308 /* OffersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081F59726876CDC00F63308 /* OffersController.swift */; };
@@ -29,6 +33,10 @@
 /* Begin PBXFileReference section */
 		0280FAC52653FD62E3A190CE /* Pods-TradeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeMe.release.xcconfig"; path = "Target Support Files/Pods-TradeMe/Pods-TradeMe.release.xcconfig"; sourceTree = "<group>"; };
 		1947D9978DA4D9E772B05460 /* Pods-TradeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeMe.debug.xcconfig"; path = "Target Support Files/Pods-TradeMe/Pods-TradeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		203694AE268C7DA900246867 /* MyProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductTableViewCell.swift; sourceTree = "<group>"; };
+		203694AF268C7DA900246867 /* MyProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProductTableViewCell.xib; sourceTree = "<group>"; };
+		203694B3268C89E900246867 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		203694B6268C8A1600246867 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		207BD6592684AA5800D3681D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2081F59526876CC800F63308 /* MyProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductsController.swift; sourceTree = "<group>"; };
 		2081F59726876CDC00F63308 /* OffersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersController.swift; sourceTree = "<group>"; };
@@ -62,6 +70,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		203694AB268C7D3300246867 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				203694AE268C7DA900246867 /* MyProductTableViewCell.swift */,
+				203694AF268C7DA900246867 /* MyProductTableViewCell.xib */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		203694B2268C89CB00246867 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				203694B3268C89E900246867 /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		203694B5268C8A0800246867 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				203694B6268C8A1600246867 /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5B8EF403B27523F1EBCE0E25 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +125,9 @@
 		836019282670B8FD0066364B /* TradeMe */ = {
 			isa = PBXGroup;
 			children = (
+				203694B5268C8A0800246867 /* Models */,
+				203694B2268C89CB00246867 /* Managers */,
+				203694AB268C7D3300246867 /* CustomCells */,
 				8371A8B126721E4A00DA4166 /* Utils */,
 				8371A8B026721E2B00DA4166 /* Controllers */,
 				836019292670B8FD0066364B /* AppDelegate.swift */,
@@ -197,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				836019362670B8FE0066364B /* LaunchScreen.storyboard in Resources */,
+				203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */,
 				83A031D92673B5F40075390A /* GoogleService-Info.plist in Resources */,
 				836019332670B8FE0066364B /* Assets.xcassets in Resources */,
 				836019312670B8FD0066364B /* Main.storyboard in Resources */,
@@ -254,6 +291,8 @@
 			files = (
 				83A031D72673B0AA0075390A /* SignUpController.swift in Sources */,
 				8360192E2670B8FD0066364B /* LoginController.swift in Sources */,
+				203694B7268C8A1600246867 /* Product.swift in Sources */,
+				203694B4268C89E900246867 /* FirebaseManager.swift in Sources */,
 				8360192A2670B8FD0066364B /* AppDelegate.swift in Sources */,
 				8360192C2670B8FD0066364B /* SceneDelegate.swift in Sources */,
 				20DE676A2685E85600163DA6 /* HomeController.swift in Sources */,
@@ -261,6 +300,7 @@
 				2081F59826876CDC00F63308 /* OffersController.swift in Sources */,
 				2081F59A26876CEC00F63308 /* ProfileController.swift in Sources */,
 				207BD65A2684AA5800D3681D /* Constants.swift in Sources */,
+				203694B0268C7DA900246867 /* MyProductTableViewCell.swift in Sources */,
 				83A031DB2673BB6C0075390A /* Validation.swift in Sources */,
 				8371A8B326721EF400DA4166 /* Styles.swift in Sources */,
 				20ADF229268A112F002D6EF1 /* AddProductController.swift in Sources */,

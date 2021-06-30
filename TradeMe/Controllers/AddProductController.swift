@@ -12,6 +12,7 @@ class AddProductController: UIViewController {
 
     let db = Firebase.Firestore.firestore()
     let storage = Firebase.Storage.storage().reference()
+    let firebaseManager = FirebaseManager()
     
     @IBOutlet weak var add_EDT_name: UITextField!
     
@@ -81,17 +82,21 @@ class AddProductController: UIViewController {
             let ref = storage.child("products/\(id).png")
             ref.putData(image, metadata: nil) { _, error in
                 if(error == nil){
-                    self.add_LBL_error.alpha = 0
-                    self.db.collection("products").document(id).setData(
-                        ["id": id,
-                         "owner": owner!,
-                         "name": name!,
-                         "description": description!,
-                         "return": cost!])
-                    self.add_EDT_name.text = ""
-                    self.add_EDT_description.text = ""
-                    self.add_IMG_image.image = UIImage(systemName: "photo")
-                    self.add_EDT_return.text = ""
+                        self.firebaseManager.downloadImageUrlFromStorageByImageId(id) { imageUrl in
+                        self.add_LBL_error.alpha = 0
+                        self.db.collection("products").document(id).setData(
+                            ["id": id,
+                             "owner": owner!,
+                             "name": name!,
+                             "description": description!,
+                             "cost": cost!,
+                             "image": imageUrl])
+                        self.add_EDT_name.text = ""
+                        self.add_EDT_description.text = ""
+                        self.add_IMG_image.image = UIImage(systemName: "photo")
+                        self.add_EDT_return.text = ""
+                    }
+                    
                 } else {
                     self.add_LBL_error.alpha = 1
                     self.add_LBL_error.text = "Something went wrong..."

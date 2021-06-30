@@ -321,10 +321,35 @@
                     <view key="view" contentMode="scaleToFill" id="H1i-Om-NlJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XCf-gJ-f4u">
+                                <rect key="frame" x="40" y="84" width="334" height="689"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyProductCell" id="uJd-wQ-mCZ">
+                                        <rect key="frame" x="0.0" y="24.5" width="334" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uJd-wQ-mCZ" id="fgP-2b-0fW">
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Cz7-cD-NYV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cz7-cD-NYV" firstAttribute="trailing" secondItem="XCf-gJ-f4u" secondAttribute="trailing" constant="40" id="L3H-vR-VbM"/>
+                            <constraint firstItem="XCf-gJ-f4u" firstAttribute="leading" secondItem="Cz7-cD-NYV" secondAttribute="leading" constant="40" id="Qft-LC-HUr"/>
+                            <constraint firstItem="Cz7-cD-NYV" firstAttribute="bottom" secondItem="XCf-gJ-f4u" secondAttribute="bottom" constant="40" id="b2F-mG-KJf"/>
+                            <constraint firstItem="XCf-gJ-f4u" firstAttribute="top" secondItem="Cz7-cD-NYV" secondAttribute="top" constant="40" id="sDM-c9-dUx"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Products" image="repeat" catalog="system" selectedImage="repeat" id="Wsv-ir-srw"/>
+                    <connections>
+                        <outlet property="my_TBV" destination="XCf-gJ-f4u" id="KkM-gf-dDP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4u-xd-mcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
