@@ -50,14 +50,34 @@ class MyProductsController: UIViewController {
 
 extension MyProductsController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        myProducts.count
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myProducts.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyProductTableViewCell.identifier, for: indexPath) as! MyProductTableViewCell
-        let product = myProducts[indexPath.row]
-        cell.configure(title: product.name, description: product.description, cost: product.cost)
+        let product = myProducts[indexPath.section]
+        cell.configure(title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.layer.cornerRadius = 5
+        cell.layer.borderWidth = 2
+        cell.layer.borderColor = UIColor.black.cgColor
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = UIColor.white.withAlphaComponent(0)
+        return header
     }
 }

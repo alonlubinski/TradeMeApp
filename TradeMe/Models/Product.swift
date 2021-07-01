@@ -13,13 +13,13 @@ class Product {
     var name: String
     var description: String
     var cost: String
-    //var image: UIImage
+    var image: UIImage
     
-    init(id: String, name: String, description: String, cost: String){
+    init(id: String, name: String, description: String, cost: String, image: UIImage){
         self.id = id
         self.name = name
         self.description = description
         self.cost = cost
-        //self.image = image
+        self.image = image
     }
 }
