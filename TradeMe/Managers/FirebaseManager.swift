@@ -18,7 +18,8 @@ class FirebaseManager {
         db.collection("products").whereField("owner", isNotEqualTo: id).getDocuments { querySnapshot, error in
             if(error == nil){
                 for document in querySnapshot!.documents {
-                    let id = document.get("id") as! String
+                    let productId = document.get("id") as! String
+                    let ownerId = document.get("owner") as! String
                     let name = document.get("name") as! String
                     let description = document.get("description") as! String
                     let cost = document.get("cost") as! String
@@ -31,7 +32,7 @@ class FirebaseManager {
                             return
                         }
                         let theImage = UIImage(data: data)
-                        let product = Product(id: id, name: name, description: description, cost: cost, image: theImage!)
+                        let product = Product(productId: productId, ownerId: ownerId, name: name, description: description, cost: cost, image: theImage!)
                         products.append(product)
                         if(products.count == querySnapshot?.count){
                             RunLoop.main.perform {
@@ -49,7 +50,8 @@ class FirebaseManager {
         db.collection("products").whereField("owner", isEqualTo: id).getDocuments { querySnapshot, error in
             if(error == nil){
                 for document in querySnapshot!.documents {
-                    let id = document.get("id") as! String
+                    let productId = document.get("id") as! String
+                    let ownerId = document.get("owner") as! String
                     let name = document.get("name") as! String
                     let description = document.get("description") as! String
                     let cost = document.get("cost") as! String
@@ -62,7 +64,7 @@ class FirebaseManager {
                             return
                         }
                         let theImage = UIImage(data: data)
-                        let product = Product(id: id, name: name, description: description, cost: cost, image: theImage!)
+                        let product = Product(productId: productId, ownerId: ownerId, name: name, description: description, cost: cost, image: theImage!)
                         products.append(product)
                         if(products.count == querySnapshot?.count){
                             RunLoop.main.perform {
@@ -84,6 +86,27 @@ class FirebaseManager {
             }
             urlString = url.absoluteString
             callback(urlString)
+        }
+    }
+    
+    func deleteProductByProductId(_ productId: String, _ callback:@escaping (() -> Void)) {
+        db.collection("products").document(productId).delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                callback()
+            }
+        }
+    }
+    
+    func getUserDetailsByUserId(_ userId: String, _ callback:@escaping ((String) -> Void)) {
+        db.collection("users").document(userId).getDocument { document, error in
+            if let document = document, document.exists {
+                let firstName = document.get("firstName") as! String
+                let lastName = document.get("lastName") as! String
+                let fullName = "\(firstName) \(lastName)"
+                callback(fullName)
+            }
         }
     }
     

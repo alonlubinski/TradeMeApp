@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol AllProductsTableViewCellDelegate: AnyObject {
+    func seeOwnerTapped(with id: String)
+    func offerTapped(with id: String)
+}
+
 class AllProductsTableViewCell: UITableViewCell {
+    
+    weak var delegate: AllProductsTableViewCellDelegate?
 
     @IBOutlet weak var home_LBL_title: UILabel!
     
@@ -25,6 +32,10 @@ class AllProductsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var home_IMG_image: UIImageView!
     
+    private var ownerId: String = ""
+    
+    private var productId: String = ""
+    
     
     static let identifier = "AllProductsTableViewCell"
     
@@ -32,7 +43,9 @@ class AllProductsTableViewCell: UITableViewCell {
         return UINib(nibName: "AllProductsTableViewCell", bundle: nil)
     }
     
-    public func configure(title: String, description: String, cost: String, image: UIImage){
+    public func configure(productId: String, ownerId: String, title: String, description: String, cost: String, image: UIImage){
+        self.productId = productId
+        self.ownerId = ownerId
         home_LBL_title.text = title
         home_LBL_description.text = description
         home_LBL_return.text = cost
@@ -53,10 +66,12 @@ class AllProductsTableViewCell: UITableViewCell {
     }
     
     @IBAction func offerTapped(_ sender: Any) {
+        delegate?.offerTapped(with: productId)
     }
     
     
     @IBAction func seeOwnerTapped(_ sender: Any) {
+        delegate?.seeOwnerTapped(with: ownerId)
     }
     
 }

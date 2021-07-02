@@ -9,14 +9,16 @@ import Foundation
 import UIKit
 
 class Product {
-    var id: String
+    var productId: String
+    var ownerId: String
     var name: String
     var description: String
     var cost: String
     var image: UIImage
     
-    init(id: String, name: String, description: String, cost: String, image: UIImage){
-        self.id = id
+    init(productId: String, ownerId: String, name: String, description: String, cost: String, image: UIImage){
+        self.productId = productId
+        self.ownerId = ownerId
         self.name = name
         self.description = description
         self.cost = cost

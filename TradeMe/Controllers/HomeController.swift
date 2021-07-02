@@ -32,6 +32,21 @@ class HomeController: UIViewController {
             self.home_TBV.reloadData()
         }
     }
+    
+    func showOfferPopupDialog() {
+        let offerDialog = UIAlertController(title: "Exchange Offer", message: "Make an offer...", preferredStyle: .alert)
+        
+        present(offerDialog, animated: true, completion: nil)
+    }
+    
+    func showSeeOwnerDialog(_ name: String, _ email: String) {
+        let offerDialog = UIAlertController(title: name, message: email, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
+                self.dismiss(animated: true, completion: nil)
+        }
+        offerDialog.addAction(okAction)
+        present(offerDialog, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
@@ -57,7 +72,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AllProductsTableViewCell.identifier, for: indexPath) as! AllProductsTableViewCell
         let product = allProducts[indexPath.section]
-        cell.configure(title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.configure(productId: product.productId, ownerId: product.ownerId, title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.delegate = self
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.black.cgColor
@@ -76,5 +92,20 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         let header = UIView()
         header.backgroundColor = UIColor.white.withAlphaComponent(0)
         return header
+    }
+}
+
+extension HomeController: AllProductsTableViewCellDelegate {
+    
+    func seeOwnerTapped(with id: String) {
+        print(id)
+        firebaseManager.getUserDetailsByUserId(id) { fullName in
+            self.showSeeOwnerDialog(fullName, id)
+        }
+    }
+    
+    func offerTapped(with id: String) {
+        print(id)
+        
     }
 }

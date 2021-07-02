@@ -7,8 +7,13 @@
 
 import UIKit
 
+protocol MyProductTableViewCellDelegate: AnyObject{
+    func deleteTapped(with id: String)
+}
+
 class MyProductTableViewCell: UITableViewCell {
 
+    weak var delegate: MyProductTableViewCellDelegate?
     
     @IBOutlet weak var my_LBL_title: UILabel!
     
@@ -25,11 +30,14 @@ class MyProductTableViewCell: UITableViewCell {
     
     static let identifier = "MyProductTableViewCell"
     
+    private var productId: String = ""
+    
     static func nib() -> UINib {
         return UINib(nibName: "MyProductTableViewCell", bundle: nil)
     }
     
-    public func configure(title: String, description: String, cost: String, image: UIImage){
+    public func configure(productId: String, title: String, description: String, cost: String, image: UIImage){
+        self.productId = productId
         my_LBL_title.text = title
         my_LBL_description.text = description
         my_LBL_return.text = cost
@@ -49,5 +57,6 @@ class MyProductTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteTapped(_ sender: Any) {
+        delegate?.deleteTapped(with: productId)
     }
 }

@@ -60,7 +60,8 @@ extension MyProductsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyProductTableViewCell.identifier, for: indexPath) as! MyProductTableViewCell
         let product = myProducts[indexPath.section]
-        cell.configure(title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.configure(productId: product.productId, title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.delegate = self
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.black.cgColor
@@ -80,4 +81,22 @@ extension MyProductsController: UITableViewDelegate, UITableViewDataSource {
         header.backgroundColor = UIColor.white.withAlphaComponent(0)
         return header
     }
+}
+
+extension MyProductsController: MyProductTableViewCellDelegate {
+    
+    func deleteTapped(with id: String) {
+        print(id)
+        guard let arrIndex =  myProducts.firstIndex(where: {$0.productId == id})
+              else {
+            return
+        }
+        myProducts.remove(at: arrIndex)
+        firebaseManager.deleteProductByProductId(id) {
+            self.my_TBV.reloadData()
+        }
+    }
+
+
+    
 }
