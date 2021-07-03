@@ -36,12 +36,13 @@ class MyProductTableViewCell: UITableViewCell {
         return UINib(nibName: "MyProductTableViewCell", bundle: nil)
     }
     
-    public func configure(productId: String, title: String, description: String, cost: String, image: UIImage){
+    public func configure(productId: String, title: String, description: String, cost: String, image: UIImage, date: String){
         self.productId = productId
         my_LBL_title.text = title
         my_LBL_description.text = description
         my_LBL_return.text = cost
         my_IMG_image.image = image
+        my_LBL_date.text = date
         Styles.transparentButton(my_BTN_delete)
     }
     

@@ -8,8 +8,8 @@
 import UIKit
 
 protocol AllProductsTableViewCellDelegate: AnyObject {
-    func seeOwnerTapped(with id: String)
-    func offerTapped(with id: String)
+    func seeOwnerTapped(id: String)
+    func offerTapped(productId: String, productName: String, ownerId: String)
 }
 
 class AllProductsTableViewCell: UITableViewCell {
@@ -36,6 +36,8 @@ class AllProductsTableViewCell: UITableViewCell {
     
     private var productId: String = ""
     
+    private var productName: String = ""
+    
     
     static let identifier = "AllProductsTableViewCell"
     
@@ -43,13 +45,15 @@ class AllProductsTableViewCell: UITableViewCell {
         return UINib(nibName: "AllProductsTableViewCell", bundle: nil)
     }
     
-    public func configure(productId: String, ownerId: String, title: String, description: String, cost: String, image: UIImage){
+    public func configure(productId: String, ownerId: String, title: String, description: String, cost: String, image: UIImage, date: String){
         self.productId = productId
         self.ownerId = ownerId
+        self.productName = title
         home_LBL_title.text = title
         home_LBL_description.text = description
         home_LBL_return.text = cost
         home_IMG_image.image = image
+        home_LBL_date.text = date
         Styles.filledButton(home_BTN_offer)
         Styles.transparentButton(home_BTN_owner)
     }
@@ -66,12 +70,12 @@ class AllProductsTableViewCell: UITableViewCell {
     }
     
     @IBAction func offerTapped(_ sender: Any) {
-        delegate?.offerTapped(with: productId)
+        delegate?.offerTapped(productId: productId, productName: productName, ownerId: ownerId)
     }
     
     
     @IBAction func seeOwnerTapped(_ sender: Any) {
-        delegate?.seeOwnerTapped(with: ownerId)
+        delegate?.seeOwnerTapped(id: ownerId)
     }
     
 }

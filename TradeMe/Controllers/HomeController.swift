@@ -33,9 +33,39 @@ class HomeController: UIViewController {
         }
     }
     
-    func showOfferPopupDialog() {
-        let offerDialog = UIAlertController(title: "Exchange Offer", message: "Make an offer...", preferredStyle: .alert)
-        
+    func showOfferPopupDialog(_ productId: String, _ productName: String, _ ownerId: String) {
+        let offerDialog = UIAlertController(title: "Exchange Offer", message: "Send an offer...", preferredStyle: .alert)
+        var messageIsNotEmpty = false
+        var paymentIsNotEmpty = false
+        let sendAction = UIAlertAction(title: "Send", style: .default) { UIAlertAction in
+            let userId = Auth.auth().currentUser?.email
+            let message = offerDialog.textFields![0].text
+            let payment = offerDialog.textFields![1].text
+            self.firebaseManager.sendExchangeOffer(userId!, ownerId, productId, productName, message!, payment!)
+            self.dismiss(animated: true, completion: nil)
+        }
+        sendAction.isEnabled = false
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }
+        offerDialog.addAction(sendAction)
+        offerDialog.addAction(cancelAction)
+        offerDialog.addTextField { textfield in
+            textfield.placeholder = "Write message to the owner..."
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main) { _ in
+                            let textCounter = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0
+                            messageIsNotEmpty = textCounter > 0
+                            sendAction.isEnabled = messageIsNotEmpty && paymentIsNotEmpty
+                        }
+        }
+        offerDialog.addTextField { textfield in
+            textfield.placeholder = "Fill your payment..."
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main) { _ in
+                let textCounter = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0
+                paymentIsNotEmpty = textCounter > 0
+                sendAction.isEnabled = messageIsNotEmpty && paymentIsNotEmpty
+            }
+        }
         present(offerDialog, animated: true, completion: nil)
     }
     
@@ -72,7 +102,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AllProductsTableViewCell.identifier, for: indexPath) as! AllProductsTableViewCell
         let product = allProducts[indexPath.section]
-        cell.configure(productId: product.productId, ownerId: product.ownerId, title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.configure(productId: product.productId, ownerId: product.ownerId, title: product.name, description: product.description, cost: product.cost, image: product.image, date: product.date)
         cell.delegate = self
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2
@@ -97,15 +127,15 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeController: AllProductsTableViewCellDelegate {
     
-    func seeOwnerTapped(with id: String) {
+    func seeOwnerTapped(id: String) {
         print(id)
         firebaseManager.getUserDetailsByUserId(id) { fullName in
             self.showSeeOwnerDialog(fullName, id)
         }
     }
     
-    func offerTapped(with id: String) {
-        print(id)
-        
+    func offerTapped(productId: String, productName: String, ownerId: String) {
+        print(productId)
+        self.showOfferPopupDialog(productId, productName, ownerId)
     }
 }

@@ -60,7 +60,7 @@ extension MyProductsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyProductTableViewCell.identifier, for: indexPath) as! MyProductTableViewCell
         let product = myProducts[indexPath.section]
-        cell.configure(productId: product.productId, title: product.name, description: product.description, cost: product.cost, image: product.image)
+        cell.configure(productId: product.productId, title: product.name, description: product.description, cost: product.cost, image: product.image, date: product.date)
         cell.delegate = self
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2

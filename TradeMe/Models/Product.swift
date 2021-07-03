@@ -15,13 +15,17 @@ class Product {
     var description: String
     var cost: String
     var image: UIImage
+    var date: String
+    var dateInterval: TimeInterval
     
-    init(productId: String, ownerId: String, name: String, description: String, cost: String, image: UIImage){
+    init(productId: String, ownerId: String, name: String, description: String, cost: String, image: UIImage, date: String, dateInterval: TimeInterval){
         self.productId = productId
         self.ownerId = ownerId
         self.name = name
         self.description = description
         self.cost = cost
         self.image = image
+        self.date = date
+        self.dateInterval = dateInterval
     }
 }
