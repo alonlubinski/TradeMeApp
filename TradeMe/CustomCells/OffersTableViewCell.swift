@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol OffersTableViewCellDelegate: AnyObject{
+    func accpetTapped(exchangeOffer: ExchangeOffer)
+    func declineTapped(offerId: String)
+}
+
 class OffersTableViewCell: UITableViewCell {
+    
+    weak var delegate: OffersTableViewCellDelegate?
 
     @IBOutlet weak var offers_LBL_title: UILabel!
     
@@ -27,16 +34,22 @@ class OffersTableViewCell: UITableViewCell {
     
     static let identifier = "OffersTableViewCell"
     
+    private var offerId: String = ""
+    
+    private var exchangeOffer: ExchangeOffer!
+    
     static func nib() -> UINib {
         return UINib(nibName: "OffersTableViewCell", bundle: nil)
     }
     
-    public func configure(productId: String, productName: String, senderId: String, ownerId: String, date: String, message: String, payment: String) {
-        offers_LBL_title.text = productName
-        offers_LBL_message.text = message
-        offers_LBL_payment.text = payment
-        offers_LBL_sender.text = senderId
-        offers_LBL_date.text = date
+    public func configure(exchangeOffer: ExchangeOffer) {
+        self.offerId = exchangeOffer.offerId
+        self.exchangeOffer = exchangeOffer
+        offers_LBL_title.text = exchangeOffer.productName
+        offers_LBL_message.text = exchangeOffer.message
+        offers_LBL_payment.text = exchangeOffer.payment
+        offers_LBL_sender.text = exchangeOffer.userId
+        offers_LBL_date.text = exchangeOffer.date
         Styles.filledButton(offers_BTN_accept)
         Styles.transparentButton(offers_BTN_decline)
     }
@@ -53,9 +66,11 @@ class OffersTableViewCell: UITableViewCell {
     }
     
     @IBAction func acceptTapped(_ sender: Any) {
+        delegate?.accpetTapped(exchangeOffer: exchangeOffer)
     }
     
     @IBAction func declineTapped(_ sender: Any) {
+        delegate?.declineTapped(offerId: offerId)
     }
     
 }

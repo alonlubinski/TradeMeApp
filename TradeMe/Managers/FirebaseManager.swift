@@ -139,6 +139,7 @@ class FirebaseManager {
         db.collection("offers").whereField("ownerId", isEqualTo: id).getDocuments { querySnapshot, error in
             if(error == nil){
                 for document in querySnapshot!.documents {
+                    let offerId = document.get("offerId") as! String
                     let userId = document.get("userId") as! String
                     let ownerId = document.get("ownerId") as! String
                     let productId = document.get("productId") as! String
@@ -147,7 +148,7 @@ class FirebaseManager {
                     let payment = document.get("payment") as! String
                     let date = document.get("date") as! String
                     let dateInterval = document.get("dateInterval") as! TimeInterval
-                    let exchangeOffer = ExchangeOffer(userId: userId, ownerId: ownerId, productId: productId, productName: productName, message: message, payment: payment, date: date, dateInterval: dateInterval)
+                    let exchangeOffer = ExchangeOffer(offerId: offerId, userId: userId, ownerId: ownerId, productId: productId, productName: productName, message: message, payment: payment, date: date, dateInterval: dateInterval)
                     offers.append(exchangeOffer)
                     if(offers.count == querySnapshot?.count){
                         let sortedOffers = offers.sorted(by: {$0.dateInterval > $1.dateInterval})
@@ -159,5 +160,64 @@ class FirebaseManager {
             }
         }
     }
+    
+    func deleteExchangeOfferByExchangeOfferId(_ offerId: String, _ callback:@escaping (() -> Void)){
+        db.collection("offers").document(offerId).delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                callback()
+            }
+        }
+    }
+    
+    func getExchangeOffersIdsByProductId(_ productId: String, _ callback:@escaping (([String]) -> Void)){
+        var offersIds = [String]()
+        db.collection("offers").whereField("productId", isEqualTo: productId).getDocuments { querySnapshot, error in
+            if error == nil {
+                for document in querySnapshot!.documents {
+                    let documentId = document.get("offerId") as! String
+                    offersIds.append(documentId)
+                    if(offersIds.count == querySnapshot?.count){
+                        callback(offersIds)
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteExchangeOffersByOfferIds(_ offerIds: [String], _ callback:@escaping (() -> Void)){
+        var counter = 0
+        for offerId in offerIds {
+            counter += 1
+            db.collection("offers").document(offerId).delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if(counter == offerIds.count){
+                        callback()
+                    }
+                }
+            }
+        }
+    }
+    
+    func addExchange(_ productId: String, _ productName: String, _ ownerId: String, _ userId: String, _ payment: String) {
+        let exchangeId = UUID().uuidString
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let formattedDate = dateFormatter.string(from: date)
+        let dateInterval = NSDate().timeIntervalSince1970
+        db.collection("exchanges").document(exchangeId).setData(["exchangeId": exchangeId,
+                                                                 "productId": productId,
+                                                                 "productName": productName,
+                                                                 "ownerId": ownerId,
+                                                                 "userId": userId,
+                                                                 "payment": payment,
+                                                                 "date": formattedDate,
+                                                                 "dateInterval": dateInterval])
+    }
+
     
 }

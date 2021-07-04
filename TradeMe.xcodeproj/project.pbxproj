@@ -11,6 +11,7 @@
 		203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203694AF268C7DA900246867 /* MyProductTableViewCell.xib */; };
 		203694B4268C89E900246867 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B3268C89E900246867 /* FirebaseManager.swift */; };
 		203694B7268C8A1600246867 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B6268C8A1600246867 /* Product.swift */; };
+		206B82092691E053009D6103 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B82082691E053009D6103 /* Exchange.swift */; };
 		207BD65A2684AA5800D3681D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD6592684AA5800D3681D /* Constants.swift */; };
 		2081F59626876CC800F63308 /* MyProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081F59526876CC800F63308 /* MyProductsController.swift */; };
 		2081F59826876CDC00F63308 /* OffersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081F59726876CDC00F63308 /* OffersController.swift */; };
@@ -42,6 +43,7 @@
 		203694AF268C7DA900246867 /* MyProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProductTableViewCell.xib; sourceTree = "<group>"; };
 		203694B3268C89E900246867 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		203694B6268C8A1600246867 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		206B82082691E053009D6103 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		207BD6592684AA5800D3681D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2081F59526876CC800F63308 /* MyProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductsController.swift; sourceTree = "<group>"; };
 		2081F59726876CDC00F63308 /* OffersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				203694B6268C8A1600246867 /* Product.swift */,
 				20FC4AB92690702A00430CB9 /* ExchangeOffer.swift */,
+				206B82082691E053009D6103 /* Exchange.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				83A031D72673B0AA0075390A /* SignUpController.swift in Sources */,
 				8360192E2670B8FD0066364B /* LoginController.swift in Sources */,
 				203694B7268C8A1600246867 /* Product.swift in Sources */,
+				206B82092691E053009D6103 /* Exchange.swift in Sources */,
 				203694B4268C89E900246867 /* FirebaseManager.swift in Sources */,
 				8360192A2670B8FD0066364B /* AppDelegate.swift in Sources */,
 				8360192C2670B8FD0066364B /* SceneDelegate.swift in Sources */,

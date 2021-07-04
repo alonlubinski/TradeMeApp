@@ -9,6 +9,7 @@ import Foundation
 
 class ExchangeOffer {
     
+    var offerId: String
     var userId: String
     var ownerId: String
     var productId: String
@@ -18,7 +19,8 @@ class ExchangeOffer {
     var date: String
     var dateInterval: TimeInterval
     
-    init(userId: String, ownerId: String, productId: String, productName: String, message: String, payment: String, date: String, dateInterval: TimeInterval){
+    init(offerId: String, userId: String, ownerId: String, productId: String, productName: String, message: String, payment: String, date: String, dateInterval: TimeInterval){
+        self.offerId = offerId
         self.userId = userId
         self.ownerId = ownerId
         self.productId = productId
