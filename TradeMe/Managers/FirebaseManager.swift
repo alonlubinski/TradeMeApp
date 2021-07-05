@@ -218,6 +218,35 @@ class FirebaseManager {
                                                                  "date": formattedDate,
                                                                  "dateInterval": dateInterval])
     }
+    
+    func getAllExchangesByUserId(_ userId: String, _ field: String, _ callback:@escaping (([Exchange]) -> Void)){
+        var exchanges = [Exchange]()
+        print("line 224")
+        db.collection("exchanges").whereField(field, isEqualTo: userId).getDocuments { querySnapshot, error in
+            if(error == nil){
+                print("line 227")
+                for document in querySnapshot!.documents{
+                    print("line 229")
+                    let exchangeId = document.get("exchangeId") as! String
+                    let productId = document.get("productId") as! String
+                    let productName = document.get("productName") as! String
+                    let ownerId = document.get("ownerId") as! String
+                    let userId = document.get("userId") as! String
+                    let payment = document.get("payment") as! String
+                    let date = document.get("date") as! String
+                    let dateInterval = document.get("dateInterval") as! TimeInterval
+                    let exchange = Exchange(exchangeId: exchangeId, productId: productId, productName: productName, ownerId: ownerId, userId: userId, payment: payment, date: date, dateInterval: dateInterval)
+                    exchanges.append(exchange)
+                    if(exchanges.count == querySnapshot?.count){
+                        callback(exchanges)
+                    }
+                }
+                if(querySnapshot?.count == 0){
+                    callback(exchanges)
+                }
+            }
+        }
+    }
 
     
 }

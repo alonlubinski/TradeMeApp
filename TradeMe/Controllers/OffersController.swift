@@ -42,6 +42,10 @@ class OffersController: UIViewController {
                 self.firebaseManager.getExchangeOffersIdsByProductId(exchangeOffer.productId) { offerIds in
                     self.firebaseManager.deleteExchangeOffersByOfferIds(offerIds) {
                         self.firebaseManager.addExchange(exchangeOffer.productId, exchangeOffer.productName, exchangeOffer.ownerId, exchangeOffer.userId, exchangeOffer.payment)
+                        self.myOffers = self.myOffers.filter({ offer in
+                            return offer.productId != exchangeOffer.productId
+                        })
+                        self.offers_TBV.reloadData()
                     }
                 }
             }

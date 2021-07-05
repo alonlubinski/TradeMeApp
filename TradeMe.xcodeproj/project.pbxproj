@@ -11,6 +11,8 @@
 		203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203694AF268C7DA900246867 /* MyProductTableViewCell.xib */; };
 		203694B4268C89E900246867 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B3268C89E900246867 /* FirebaseManager.swift */; };
 		203694B7268C8A1600246867 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B6268C8A1600246867 /* Product.swift */; };
+		205445DF269340860091826C /* ExchangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205445DD269340860091826C /* ExchangeTableViewCell.swift */; };
+		205445E0269340860091826C /* ExchangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205445DE269340860091826C /* ExchangeTableViewCell.xib */; };
 		206B82092691E053009D6103 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B82082691E053009D6103 /* Exchange.swift */; };
 		207BD65A2684AA5800D3681D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BD6592684AA5800D3681D /* Constants.swift */; };
 		2081F59626876CC800F63308 /* MyProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081F59526876CC800F63308 /* MyProductsController.swift */; };
@@ -43,6 +45,8 @@
 		203694AF268C7DA900246867 /* MyProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProductTableViewCell.xib; sourceTree = "<group>"; };
 		203694B3268C89E900246867 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		203694B6268C8A1600246867 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		205445DD269340860091826C /* ExchangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTableViewCell.swift; sourceTree = "<group>"; };
+		205445DE269340860091826C /* ExchangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeTableViewCell.xib; sourceTree = "<group>"; };
 		206B82082691E053009D6103 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		207BD6592684AA5800D3681D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2081F59526876CC800F63308 /* MyProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProductsController.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				20B25D35268E01B500C7A16D /* AllProductsTableViewCell.xib */,
 				20FC4ABB2690B7B300430CB9 /* OffersTableViewCell.swift */,
 				20FC4ABC2690B7B300430CB9 /* OffersTableViewCell.xib */,
+				205445DD269340860091826C /* ExchangeTableViewCell.swift */,
+				205445DE269340860091826C /* ExchangeTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				205445E0269340860091826C /* ExchangeTableViewCell.xib in Resources */,
 				20FC4ABE2690B7B300430CB9 /* OffersTableViewCell.xib in Resources */,
 				836019362670B8FE0066364B /* LaunchScreen.storyboard in Resources */,
 				203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */,
@@ -317,6 +324,7 @@
 				8360192A2670B8FD0066364B /* AppDelegate.swift in Sources */,
 				8360192C2670B8FD0066364B /* SceneDelegate.swift in Sources */,
 				20DE676A2685E85600163DA6 /* HomeController.swift in Sources */,
+				205445DF269340860091826C /* ExchangeTableViewCell.swift in Sources */,
 				2081F59626876CC800F63308 /* MyProductsController.swift in Sources */,
 				2081F59826876CDC00F63308 /* OffersController.swift in Sources */,
 				20FC4ABA2690702A00430CB9 /* ExchangeOffer.swift in Sources */,
