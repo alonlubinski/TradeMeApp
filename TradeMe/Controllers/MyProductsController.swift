@@ -35,6 +35,31 @@ class MyProductsController: UIViewController {
         }
     }
     
+    func showConfirmationDialog(_ productId: String){
+        let acceptDialog = UIAlertController(title: "Delete Product", message: "Are you sure? The product and all the offers for this product will be deleted.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { UIAlertAction in
+            guard let arrIndex =  self.myProducts.firstIndex(where: {$0.productId == productId}) else {
+                    return
+                }
+            self.myProducts.remove(at: arrIndex)
+            self.firebaseManager.deleteProductByProductId(productId) {
+                self.firebaseManager.getExchangeOffersIdsByProductId(productId) { offerIds in
+                    self.firebaseManager.deleteExchangeOffersByOfferIds(offerIds) {
+                        self.my_TBV.reloadData()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { UIAlertAction in
+            self.dismiss(animated: true, completion: nil)
+        }
+        acceptDialog.addAction(confirmAction)
+        acceptDialog.addAction(cancelAction)
+        present(acceptDialog, animated: true, completion: nil)
+        
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -51,7 +76,12 @@ class MyProductsController: UIViewController {
 extension MyProductsController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        myProducts.count
+        if myProducts.count == 0 {
+            tableView.setEmptyMessage("No products to display")
+        } else {
+            tableView.restore()
+        }
+        return myProducts.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -87,14 +117,8 @@ extension MyProductsController: MyProductTableViewCellDelegate {
     
     func deleteTapped(with id: String) {
         print(id)
-        guard let arrIndex =  myProducts.firstIndex(where: {$0.productId == id})
-              else {
-            return
-        }
-        myProducts.remove(at: arrIndex)
-        firebaseManager.deleteProductByProductId(id) {
-            self.my_TBV.reloadData()
-        }
+        showConfirmationDialog(id)
+        
     }
 
 

@@ -11,6 +11,7 @@
 		203694B1268C7DA900246867 /* MyProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203694AF268C7DA900246867 /* MyProductTableViewCell.xib */; };
 		203694B4268C89E900246867 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B3268C89E900246867 /* FirebaseManager.swift */; };
 		203694B7268C8A1600246867 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203694B6268C8A1600246867 /* Product.swift */; };
+		203BA51926988E4A0089774A /* EmptyTableViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203BA51826988E4A0089774A /* EmptyTableViewUtil.swift */; };
 		205445DF269340860091826C /* ExchangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205445DD269340860091826C /* ExchangeTableViewCell.swift */; };
 		205445E0269340860091826C /* ExchangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 205445DE269340860091826C /* ExchangeTableViewCell.xib */; };
 		206B82092691E053009D6103 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B82082691E053009D6103 /* Exchange.swift */; };
@@ -45,6 +46,7 @@
 		203694AF268C7DA900246867 /* MyProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProductTableViewCell.xib; sourceTree = "<group>"; };
 		203694B3268C89E900246867 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		203694B6268C8A1600246867 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		203BA51826988E4A0089774A /* EmptyTableViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewUtil.swift; sourceTree = "<group>"; };
 		205445DD269340860091826C /* ExchangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeTableViewCell.swift; sourceTree = "<group>"; };
 		205445DE269340860091826C /* ExchangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeTableViewCell.xib; sourceTree = "<group>"; };
 		206B82082691E053009D6103 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				8371A8B226721EF400DA4166 /* Styles.swift */,
 				83A031DA2673BB6C0075390A /* Validation.swift */,
 				207BD6592684AA5800D3681D /* Constants.swift */,
+				203BA51826988E4A0089774A /* EmptyTableViewUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				20FC4ABD2690B7B300430CB9 /* OffersTableViewCell.swift in Sources */,
 				83A031DB2673BB6C0075390A /* Validation.swift in Sources */,
 				8371A8B326721EF400DA4166 /* Styles.swift in Sources */,
+				203BA51926988E4A0089774A /* EmptyTableViewUtil.swift in Sources */,
 				20ADF229268A112F002D6EF1 /* AddProductController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

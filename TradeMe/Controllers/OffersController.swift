@@ -26,6 +26,8 @@ class OffersController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         let ownerId = Firebase.Auth.auth().currentUser?.email
+        self.myOffers.removeAll()
+        self.offers_TBV.reloadData()
         firebaseManager.getAllExchangeOffersByUserId(ownerId!) { offers in
             self.myOffers = offers
             self.offers_TBV.reloadData()
@@ -95,7 +97,12 @@ class OffersController: UIViewController {
 extension OffersController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        myOffers.count
+        if myOffers.count == 0 {
+            tableView.setEmptyMessage("No offers to display")
+        } else {
+            tableView.restore()
+        }
+        return myOffers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

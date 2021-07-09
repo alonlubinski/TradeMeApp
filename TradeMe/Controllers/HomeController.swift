@@ -93,7 +93,12 @@ class HomeController: UIViewController {
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        allProducts.count
+        if allProducts.count == 0 {
+            tableView.setEmptyMessage("No products to display")
+        } else {
+            tableView.restore()
+        }
+        return allProducts.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

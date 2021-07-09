@@ -70,6 +70,7 @@ class AddProductController: UIViewController {
         if error != nil {
             add_LBL_error.text = error
             add_LBL_error.alpha = 1
+            add_LBL_error.textColor = .red
         } else {
             let id = UUID().uuidString
             let owner = Firebase.Auth.auth().currentUser?.email
@@ -102,11 +103,15 @@ class AddProductController: UIViewController {
                         self.add_EDT_description.text = ""
                         self.add_IMG_image.image = UIImage(systemName: "photo")
                         self.add_EDT_return.text = ""
+                        self.add_LBL_error.text = "Product added successfully"
+                        self.add_LBL_error.alpha = 1
+                        self.add_LBL_error.textColor = .systemGreen
                     }
                     
                 } else {
                     self.add_LBL_error.alpha = 1
                     self.add_LBL_error.text = "Something went wrong..."
+                    self.add_LBL_error.textColor = .red
                 }
             }
         }

@@ -50,6 +50,7 @@ class ProfileController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let email = user?.email
         firebaseManager.getAllExchangesByUserId(email!, "ownerId") { ownerExchanges in
+            self.myExchanges.removeAll()
             self.myExchanges.append(contentsOf: ownerExchanges)
             self.firebaseManager.getAllExchangesByUserId(email!, "userId") { userExchanges in
                 self.myExchanges.append(contentsOf: userExchanges)
@@ -93,7 +94,12 @@ class ProfileController: UIViewController {
 extension ProfileController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        myExchanges.count
+        if myExchanges.count == 0 {
+            tableView.setEmptyMessage("No exchanges to display")
+        } else {
+            tableView.restore()
+        }
+        return myExchanges.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
