@@ -27,12 +27,12 @@ class HomeController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let userId = Firebase.Auth.auth().currentUser?.email
         firebaseManager.getAllProductsWithoutUserProducts(userId!) { products in
-            //print(products.count)
             self.allProducts = products
             self.home_TBV.reloadData()
         }
     }
     
+    // Function that shows offer popup dialog
     func showOfferPopupDialog(_ productId: String, _ productName: String, _ ownerId: String) {
         let offerDialog = UIAlertController(title: "Exchange Offer", message: "Send an offer...", preferredStyle: .alert)
         var messageIsNotEmpty = false
@@ -69,6 +69,7 @@ class HomeController: UIViewController {
         present(offerDialog, animated: true, completion: nil)
     }
     
+    // Function that shows owner's info dialog
     func showSeeOwnerDialog(_ name: String, _ email: String) {
         let offerDialog = UIAlertController(title: name, message: email, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in

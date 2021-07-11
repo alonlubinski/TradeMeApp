@@ -29,12 +29,12 @@ class MyProductsController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let ownerId = Firebase.Auth.auth().currentUser?.email
         firebaseManager.getAllProductsByOwnerId(ownerId!) { products in
-            //print(products.count)
             self.myProducts = products
             self.my_TBV.reloadData()
         }
     }
     
+    // Function that shows delete confirmation dialog
     func showConfirmationDialog(_ productId: String){
         let acceptDialog = UIAlertController(title: "Delete Product", message: "Are you sure? The product and all the offers for this product will be deleted.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { UIAlertAction in

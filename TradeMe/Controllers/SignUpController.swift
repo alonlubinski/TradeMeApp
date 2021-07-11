@@ -33,6 +33,7 @@ class SignUpController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // Init styles to the views
     func setUpViews() {
         Styles.textField(register_EDT_first)
         Styles.textField(register_EDT_last)
@@ -42,6 +43,7 @@ class SignUpController: UIViewController {
         Styles.filledButton(register_BTN_register)
     }
     
+    // Function that check if the form is filled right, if not it's returns the error
     func validateForm() -> String? {
         if(!Validation.fieldIsNotEmpty(register_EDT_email) || !Validation.fieldIsNotEmpty(register_EDT_password) || !Validation.fieldIsNotEmpty(register_EDT_password2) ||
             !Validation.fieldIsNotEmpty(register_EDT_first) ||

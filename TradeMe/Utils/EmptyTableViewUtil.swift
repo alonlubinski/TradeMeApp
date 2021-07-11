@@ -22,7 +22,7 @@ extension UITableView {
             self.backgroundView = messageLabel
         }
 
-        func restore() {
-            self.backgroundView = nil
-        }
+    func restore() {
+        self.backgroundView = nil
+    }
 }

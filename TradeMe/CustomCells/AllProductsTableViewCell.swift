@@ -51,7 +51,7 @@ class AllProductsTableViewCell: UITableViewCell {
         self.productName = title
         home_LBL_title.text = title
         home_LBL_description.text = description
-        home_LBL_return.text = cost
+        home_LBL_return.text = "Cost: \(cost)"
         home_IMG_image.image = image
         home_LBL_date.text = date
         Styles.filledButton(home_BTN_offer)

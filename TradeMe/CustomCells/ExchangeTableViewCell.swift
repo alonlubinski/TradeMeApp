@@ -8,8 +8,13 @@
 import UIKit
 import Firebase
 
+protocol ExchangeTableViewCellDelegate: AnyObject {
+    func seeExchangerTapped(id: String)
+}
+
 class ExchangeTableViewCell: UITableViewCell {
 
+    weak var delegate: ExchangeTableViewCellDelegate?
     
     @IBOutlet weak var exchange_LBL_title: UILabel!
     
@@ -19,6 +24,12 @@ class ExchangeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var exchange_BTN_watch: UIButton!
     
+    private var userProductName: String = ""
+    
+    private var exchangedProductName: String = ""
+    
+    private var exchangerUserId: String = ""
+    
     static let identifier = "ExchangeTableViewCell"
     
     static func nib() -> UINib {
@@ -26,15 +37,15 @@ class ExchangeTableViewCell: UITableViewCell {
     }
     
     public func configure(exchange: Exchange){
-        var userProductName = ""
-        var exchangedProductName = ""
         let email = Auth.auth().currentUser?.email
         if(email == exchange.ownerId){
             userProductName = exchange.productName
             exchangedProductName = exchange.payment
+            exchangerUserId = exchange.userId
         } else {
             userProductName = exchange.payment
             exchangedProductName = exchange.productName
+            exchangerUserId = exchange.ownerId
         }
         exchange_LBL_title.text = "\(userProductName) <-> \(exchangedProductName)"
         exchange_LBL_description.text = "You have exchanged your \(userProductName) for \(exchangedProductName)"
@@ -55,6 +66,7 @@ class ExchangeTableViewCell: UITableViewCell {
     }
     
     @IBAction func watchTapped(_ sender: Any) {
+        delegate?.seeExchangerTapped(id: exchangerUserId)
     }
     
     

@@ -47,7 +47,7 @@ class OffersTableViewCell: UITableViewCell {
         self.exchangeOffer = exchangeOffer
         offers_LBL_title.text = exchangeOffer.productName
         offers_LBL_message.text = exchangeOffer.message
-        offers_LBL_payment.text = exchangeOffer.payment
+        offers_LBL_payment.text = "Payment: \(exchangeOffer.payment)"
         offers_LBL_sender.text = exchangeOffer.userId
         offers_LBL_date.text = exchangeOffer.date
         Styles.filledButton(offers_BTN_accept)

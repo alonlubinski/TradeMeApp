@@ -34,12 +34,10 @@ class OffersController: UIViewController {
         }
     }
     
+    // Function taht show offer accept confirmation dialog
     func showAcceptConfirmationDialog(_ exchangeOffer: ExchangeOffer){
         let acceptDialog = UIAlertController(title: "Accept Offer", message: "Are you sure? All offers for this product will be deleted.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { UIAlertAction in
-            // add exchange
-            // delete all offers relared to the product
-            // delete product
             self.firebaseManager.deleteProductByProductId(exchangeOffer.productId) {
                 self.firebaseManager.getExchangeOffersIdsByProductId(exchangeOffer.productId) { offerIds in
                     self.firebaseManager.deleteExchangeOffersByOfferIds(offerIds) {
@@ -61,6 +59,7 @@ class OffersController: UIViewController {
         present(acceptDialog, animated: true, completion: nil)
     }
     
+    // Function that shows offer decline confirmation dialog
     func showDeclineConfirmationDialog(_ offerId: String){
         let declineDialog = UIAlertController(title: "Decline Offer", message: "Are you sure? You will not be able to see this offer again.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { UIAlertAction in

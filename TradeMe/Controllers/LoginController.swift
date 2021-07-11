@@ -34,6 +34,7 @@ class LoginController: UIViewController {
         setUpViews()
     }
     
+    // Init styles to the views
     func setUpViews() {
         Styles.textField(login_EDT_email)
         Styles.textField(login_EDT_password)
@@ -41,6 +42,7 @@ class LoginController: UIViewController {
         Styles.transparentButton(login_BTN_register)
     }
     
+    // Function that check if the form is filled right, if not it's returns the error
     func validateForm() -> String? {
         if(!Validation.fieldIsNotEmpty(login_EDT_email) || !Validation.fieldIsNotEmpty(login_EDT_password)){
             return "Please fill all the fields"
@@ -67,18 +69,11 @@ class LoginController: UIViewController {
                     self.login_LBL_error.alpha = 1
                 } else {
                     self.login_LBL_error.alpha = 0
-                    //self.performSegue(withIdentifier: "loginToHome", sender: self)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                 }
             }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginToHome" {
-            _ = segue.destination as! HomeController
         }
     }
     

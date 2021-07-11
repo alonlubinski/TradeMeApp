@@ -40,6 +40,7 @@ class AddProductController: UIViewController {
         
     }
     
+    // Init styles to the views
     func setUpViews() {
         Styles.textField(add_EDT_name)
         Styles.textField(add_EDT_description)
@@ -48,6 +49,7 @@ class AddProductController: UIViewController {
         Styles.filledButton(add_BTN_post)
     }
     
+    // Function that checks if the form filled right, if not it's returns the error
     func validateForm() -> String? {
         if(!Validation.fieldIsNotEmpty(add_EDT_name) || !Validation.fieldIsNotEmpty(add_EDT_description) || !Validation.fieldIsNotEmpty(add_EDT_return)){
             return "Please fill all the fields"

@@ -63,8 +63,19 @@ class ProfileController: UIViewController {
         }
     }
     
+    // Init styles to the views
     func setUpViews() {
         Styles.transparentButton(profile_BTN_logout)
+    }
+    
+    // Function taht shows exchanger info dialog
+    func showSeeExchangerDialog(_ name: String, _ email: String) {
+        let offerDialog = UIAlertController(title: name, message: email, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
+                self.dismiss(animated: true, completion: nil)
+        }
+        offerDialog.addAction(okAction)
+        present(offerDialog, animated: true, completion: nil)
     }
     
     @IBAction func logoutTapped(_ sender: Any) {
@@ -109,7 +120,7 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExchangeTableViewCell.identifier, for: indexPath) as! ExchangeTableViewCell
         let exchange = myExchanges[indexPath.section]
         cell.configure(exchange: exchange)
-        //cell.delegate = self
+        cell.delegate = self
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor.black.cgColor
@@ -128,5 +139,13 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
         let header = UIView()
         header.backgroundColor = UIColor.white.withAlphaComponent(0)
         return header
+    }
+}
+
+extension ProfileController: ExchangeTableViewCellDelegate {
+    func seeExchangerTapped(id: String) {
+        firebaseManager.getUserDetailsByUserId(id) { fullName in
+            self.showSeeExchangerDialog(fullName, id)
+        }
     }
 }
