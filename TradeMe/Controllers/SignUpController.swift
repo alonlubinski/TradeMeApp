@@ -72,6 +72,8 @@ class SignUpController: UIViewController {
             let lastName = register_EDT_last.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = register_EDT_email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = register_EDT_password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let rating = 0
+            let numOfRates = 0
             Auth.auth().createUser(withEmail: email, password: password) {
                 (result, err) in
                 if err != nil {
@@ -82,7 +84,9 @@ class SignUpController: UIViewController {
                     db.collection("users").document(email).setData(
                         ["firstName": firstName,
                         "lastName": lastName,
-                        "email" : email])
+                        "email" : email,
+                        "rating" : rating,
+                        "numOfRates" : numOfRates])
                     self.backToLoginScreen()
                 }
             }

@@ -14,6 +14,8 @@ class ProfileController: UIViewController {
     
     @IBOutlet weak var profile_LBL_email: UILabel!
     
+    @IBOutlet weak var profile_LBL_rating: UILabel!
+    
     @IBOutlet weak var profile_BTN_logout: UIButton!
     
     @IBOutlet weak var profile_TBV: UITableView!
@@ -38,8 +40,17 @@ class ProfileController: UIViewController {
                 let firstName = document.get("firstName") as! String
                 let lastName = document.get("lastName") as! String
                 let userEmail = document.get("email") as! String
+                let rating = document.get("rating") as! Double
+                let numOfRates = document.get("numOfRates") as! Double
+                var calculatedRating = 0.0
+                if(numOfRates > 0){
+                    calculatedRating = rating / numOfRates
+                }
+                let calculatedRatingStr: String = String(format: "%.2f", calculatedRating)
+                let numOfRatesStr: String = String(format: "%.0f", numOfRates)
                 self.profile_LBL_name.text = "\(firstName) \(lastName)"
                 self.profile_LBL_email.text = "\(userEmail)"
+                self.profile_LBL_rating.text = "Rating (num of rates): \(calculatedRatingStr) (\(numOfRatesStr))"
             } else {
                 print("Document does not exist")
             }
@@ -68,14 +79,50 @@ class ProfileController: UIViewController {
         Styles.transparentButton(profile_BTN_logout)
     }
     
-    // Function taht shows exchanger info dialog
-    func showSeeExchangerDialog(_ name: String, _ email: String) {
-        let offerDialog = UIAlertController(title: name, message: email, preferredStyle: .alert)
+    // Function that shows exchanger info dialog
+    func showSeeExchangerDialog(_ name: String, _ email: String, _ rating: String, _ numOfRates: String) {
+        let offerDialog = UIAlertController(title: name, message: "\(email)\nRating (num of rates): \(rating) (\(numOfRates))", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
                 self.dismiss(animated: true, completion: nil)
         }
         offerDialog.addAction(okAction)
         present(offerDialog, animated: true, completion: nil)
+    }
+    
+    // Function that shows rate dialog
+    func showRateDialog(_ id: String) {
+        let rateDialog = UIAlertController(title: "Rate", message: "Please rate the exchanger...", preferredStyle: .alert)
+        let badAction = UIAlertAction(title: "Bad", style: .default) { UIAlertAction in
+            self.firebaseManager.updateRating(id, 1) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        let okAction = UIAlertAction(title: "Ok", style: .default) { UIAlertAction in
+            self.firebaseManager.updateRating(id, 2) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        let goodAction = UIAlertAction(title: "Good", style: .default) { UIAlertAction in
+            self.firebaseManager.updateRating(id, 3) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        let veryGoodAction = UIAlertAction(title: "Very Good", style: .default) { UIAlertAction in
+            self.firebaseManager.updateRating(id, 4) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        let excellentAction = UIAlertAction(title: "Excellent", style: .default) { UIAlertAction in
+            self.firebaseManager.updateRating(id, 5) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        rateDialog.addAction(badAction)
+        rateDialog.addAction(okAction)
+        rateDialog.addAction(goodAction)
+        rateDialog.addAction(veryGoodAction)
+        rateDialog.addAction(excellentAction)
+        present(rateDialog, animated: true, completion: nil)
     }
     
     @IBAction func logoutTapped(_ sender: Any) {
@@ -144,8 +191,12 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
 
 extension ProfileController: ExchangeTableViewCellDelegate {
     func seeExchangerTapped(id: String) {
-        firebaseManager.getUserDetailsByUserId(id) { fullName in
-            self.showSeeExchangerDialog(fullName, id)
+        firebaseManager.getUserDetailsByUserId(id) { fullName, rating, numOfRates in
+            self.showSeeExchangerDialog(fullName, id, rating, numOfRates)
         }
+    }
+    
+    func rateTapped(id: String) {
+        self.showRateDialog(id)
     }
 }

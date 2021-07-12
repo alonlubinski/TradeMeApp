@@ -10,6 +10,7 @@ import Firebase
 
 protocol ExchangeTableViewCellDelegate: AnyObject {
     func seeExchangerTapped(id: String)
+    func rateTapped(id: String)
 }
 
 class ExchangeTableViewCell: UITableViewCell {
@@ -23,6 +24,9 @@ class ExchangeTableViewCell: UITableViewCell {
     @IBOutlet weak var exchange_LBL_date: UILabel!
     
     @IBOutlet weak var exchange_BTN_watch: UIButton!
+    
+    
+    @IBOutlet weak var exchange_BTN_rate: UIButton!
     
     private var userProductName: String = ""
     
@@ -51,7 +55,7 @@ class ExchangeTableViewCell: UITableViewCell {
         exchange_LBL_description.text = "You have exchanged your \(userProductName) for \(exchangedProductName)"
         exchange_LBL_date.text = exchange.date
         Styles.transparentButton(exchange_BTN_watch)
-        
+        Styles.filledButton(exchange_BTN_rate)
     }
     
     override func awakeFromNib() {
@@ -70,4 +74,7 @@ class ExchangeTableViewCell: UITableViewCell {
     }
     
     
+    @IBAction func rateTapped(_ sender: Any) {
+        delegate?.rateTapped(id: exchangerUserId)
+    }
 }

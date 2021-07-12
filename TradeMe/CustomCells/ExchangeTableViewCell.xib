@@ -43,16 +43,28 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iw-jp-9m9">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5di-i2-X01">
                                 <rect key="frame" x="0.0" y="75" width="474" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="EmL-6v-M5g"/>
-                                </constraints>
-                                <state key="normal" title="See Exchanger"/>
-                                <connections>
-                                    <action selector="watchTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9t5-1L-fAx"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7f-t6-qXJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="227" height="50"/>
+                                        <state key="normal" title="Rate"/>
+                                        <connections>
+                                            <action selector="rateTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pan-VU-aiu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iw-jp-9m9">
+                                        <rect key="frame" x="247" y="0.0" width="227" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="EmL-6v-M5g"/>
+                                        </constraints>
+                                        <state key="normal" title="See Exchanger"/>
+                                        <connections>
+                                            <action selector="watchTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9t5-1L-fAx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -65,6 +77,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="exchange_BTN_rate" destination="Q7f-t6-qXJ" id="Z7m-1F-9iv"/>
                 <outlet property="exchange_BTN_watch" destination="6iw-jp-9m9" id="CcA-eD-L6B"/>
                 <outlet property="exchange_LBL_date" destination="w25-Cs-O9r" id="qd4-YL-Ben"/>
                 <outlet property="exchange_LBL_description" destination="GA8-86-ODb" id="506-CG-3hs"/>

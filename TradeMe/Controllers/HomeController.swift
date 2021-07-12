@@ -70,13 +70,13 @@ class HomeController: UIViewController {
     }
     
     // Function that shows owner's info dialog
-    func showSeeOwnerDialog(_ name: String, _ email: String) {
-        let offerDialog = UIAlertController(title: name, message: email, preferredStyle: .alert)
+    func showSeeOwnerDialog(_ name: String, _ email: String, _ rating: String, _ numOfRates: String) {
+        let seeOwnerDialog = UIAlertController(title: name, message: "\(email)\nRating (num of rates): \(rating) (\(numOfRates))", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
                 self.dismiss(animated: true, completion: nil)
         }
-        offerDialog.addAction(okAction)
-        present(offerDialog, animated: true, completion: nil)
+        seeOwnerDialog.addAction(okAction)
+        present(seeOwnerDialog, animated: true, completion: nil)
     }
 
     /*
@@ -135,8 +135,8 @@ extension HomeController: AllProductsTableViewCellDelegate {
     
     func seeOwnerTapped(id: String) {
         print(id)
-        firebaseManager.getUserDetailsByUserId(id) { fullName in
-            self.showSeeOwnerDialog(fullName, id)
+        firebaseManager.getUserDetailsByUserId(id) { fullName, rating, numOfRates in
+            self.showSeeOwnerDialog(fullName, id, rating, numOfRates)
         }
     }
     

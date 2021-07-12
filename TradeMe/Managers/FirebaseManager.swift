@@ -114,13 +114,21 @@ class FirebaseManager {
         }
     }
     
-    func getUserDetailsByUserId(_ userId: String, _ callback:@escaping ((String) -> Void)) {
+    func getUserDetailsByUserId(_ userId: String, _ callback:@escaping ((String, String, String) -> Void)) {
         db.collection("users").document(userId).getDocument { document, error in
             if let document = document, document.exists {
                 let firstName = document.get("firstName") as! String
                 let lastName = document.get("lastName") as! String
                 let fullName = "\(firstName) \(lastName)"
-                callback(fullName)
+                let rating = document.get("rating") as! Double
+                let numOfRates = document.get("numOfRates") as! Double
+                var calculatedRating = 0.0
+                if(numOfRates > 0){
+                    calculatedRating = rating / numOfRates
+                }
+                let calculatedRatingStr: String = String(format: "%.2f", calculatedRating)
+                let numOfRatesStr: String = String(format: "%.0f", numOfRates)
+                callback(fullName, calculatedRatingStr, numOfRatesStr)
             }
         }
     }
@@ -270,5 +278,24 @@ class FirebaseManager {
         }
     }
 
+    func updateRating(_ userId: String, _ rate: Int, _ callback:@escaping (() -> Void)){
+        db.collection("users").document(userId).getDocument { document, error in
+            if let document = document, document.exists {
+                let rating = document.get("rating") as! Int
+                let numOfRates = document.get("numOfRates") as! Int
+                let updatedRating = rating + rate
+                let updatedNumOfRates = numOfRates + 1
+                self.db.collection("users").document(userId).updateData(
+                    ["rating" : updatedRating,
+                     "numOfRates" : updatedNumOfRates]) { err in
+                    if let err = err {
+                        print(err.localizedDescription)
+                    } else {
+                        callback()
+                    }
+                }
+            }
+        }
+    }
     
 }
