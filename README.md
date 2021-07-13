@@ -1,5 +1,5 @@
 # TradeMeApp
-The TradeMe app is an app for exchanging used and new products between users. The application was built as part of the final project of the application development course for iOS. The application was built in xcode with swift and connected to Firebase for data management.
+TradeMe app is an app for exchanging used and new products between users. The application was built as part of the final project of the application development course for iOS. The application was built in xcode with swift and connected to Firebase for data management.
 
 ## Screenshots
 ### Login and Sign Up screens
